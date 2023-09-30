@@ -38,7 +38,7 @@ Here is a list of different types of traffic and applications considered in the 
 
 ## Data Processing
 
-The ISCXFlowMeter tool, written in Java, is used to read the pcap files and create CSV files based on selected features.
+Scapy is used to read the pcap files and create CSV files based on selected features.
 
 ## Dataset Availability
 
