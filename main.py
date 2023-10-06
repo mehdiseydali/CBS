@@ -68,6 +68,7 @@ from load_pcap_datatype import load_pcap_datatype
 from read_pcap_files import read_pcap_files
 from packet_normalization import packet_normalization
 from define_GAN_mode import process_csv_files
+from preprocessing-traffic-label import read_app_pcap_files()
 
 
 
@@ -129,12 +130,19 @@ root_normalized_dir = 'media/mehdi/linux/normalized_data/'
 sae-extracted-feature-file = 'mehdi/linux'
 # in this function PCAP files read and based on file name the label extract.
 extracted_packet_root_dir = read_pcap_files()
+extracted_app_root_dir = read_app_pcap_files()
 files = []
-  for file in os.listdir(extracted_packet_root_dir):
-    if os.path.isfile(os.path.join(extracted_packet_root_dir, file)):
+
+for file in os.listdir(extracted_packet_root_dir):
+   if os.path.isfile(os.path.join(extracted_packet_root_dir, file)):
+     files.append(file)
+app_files = []
+for file in os.listdir(extracted_app_root_dir):
+    if os.path.isfile(os.path.join(extracted_app_root_dir, file)):
       files.append(file)
 # Do packet normalization
-packet_normalization(files)      
+packet_normalization(files)  
+packet_normalization(app_files)  
 # define network model parameters ( hyper parameters )
 net_params = network_parameters_initializer()
 #GAN model for producing syntesized data
@@ -151,6 +159,7 @@ sae_output,sae_saved_models,sae_saved_weights,sae_path = SAE_Traffic_classificat
 # Combine the outputs into a single input array
 fc_model_params = define_FC_model_params()
 mlp_model = FC-traffic-classification(root_normalized_dir,net_params,fc_model_params, 1d-cnn_path,cnn_saved_model,bi-lstm_path,bilstm_saved_model,sae_path,sae_saved_models,sae-extracted-feature-file)
+# =============================== app classification =================================
 
 
 
