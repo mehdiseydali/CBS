@@ -127,6 +127,7 @@ print(Ether().src)
 
 
 root_normalized_dir = 'media/mehdi/linux/normalized_data/'
+root_app_normalized_dir =  'media/mehdi/linux/normalized_app_data/'
 sae-extracted-feature-file = 'mehdi/linux'
 # in this function PCAP files read and based on file name the label extract.
 extracted_packet_root_dir = read_pcap_files()
@@ -141,25 +142,33 @@ for file in os.listdir(extracted_app_root_dir):
     if os.path.isfile(os.path.join(extracted_app_root_dir, file)):
       files.append(file)
 # Do packet normalization
-packet_normalization(files)  
-packet_normalization(app_files)  
+packet_normalization(files,1)  
+packet_normalization(app_files,0)  
 # define network model parameters ( hyper parameters )
 net_params = network_parameters_initializer()
 #GAN model for producing syntesized data
 process_csv_files()
 # Define 1D-CNN the model parameters
 cnn_model_params = defin_1D-CNN_model_params()
+#====================== for traffic type classification ====================
 cnn_output,cnn_saved_model,cnn_saved_weights,1d-cnn_path = cnn_Traffic_classification(root_normalized_dir,net_params,cnn_model_params)
+# ============for application classification ==============================
+cnn1_output,cnn1_saved_model,cnn1_saved_weights,app_1d-cnn_path = cnn_Traffic_classification(root_app_normalized_dir,net_params,cnn_model_params)
 # Define Bi-LSTM the model parameters
+#======================= for traffic type classification ====================
 Bi-LSTM_model_params = define_Bi-LSTM_model_params()
 bi-LSTM_output,bilstm_saved_model,bilstm_saved_weights,bi-lstm_path = Bi-LSTM_Traffic_classification(root_normalized_dir,net_params,Bi-LSTM_model_params)
+#======================= for application classification ====================
+bi-LSTM1_output,bilstm1_saved_model,bilstm1_saved_weights,bi-lstm1_path = Bi-LSTM_Traffic_classification(root_app_normalized_dir,net_params,Bi-LSTM_model_params)
 #Define SAE the model parameters
 SAE_model_params = define_SAE_model_params()
 sae_output,sae_saved_models,sae_saved_weights,sae_path = SAE_Traffic_classification(sae-extracted-feature-file,net_params,SAE_model_params)
 # Combine the outputs into a single input array
 fc_model_params = define_FC_model_params()
+#====================== for traffic type classification ======================================
 mlp_model = FC-traffic-classification(root_normalized_dir,net_params,fc_model_params, 1d-cnn_path,cnn_saved_model,bi-lstm_path,bilstm_saved_model,sae_path,sae_saved_models,sae-extracted-feature-file)
-# =============================== app classification =================================
+# =============================== for application classification =================================
+mlp_model2 = FC-traffic-classification(root_app_normalized_dir,net_params,fc_model_params, app_1d-cnn_path,cnn1_saved_model,bi-lstm1_path,bilstm1_saved_model,sae_path,sae_saved_models,sae-extracted-feature-file)
 
 
 
