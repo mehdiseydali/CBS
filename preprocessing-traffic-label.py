@@ -10,59 +10,6 @@ def get_application_from_filename(filename):
   Returns:
     The application of the packet, or None if the application cannot be determined.
   """
-"""
-  # Get the prefix of the filename.
-  prefix = filename.split(".")[0].lower()
-
-  # Determine the application based on the prefix.
-  # Determine the application based on the prefix.
-  if re.search(r'\bicq\b', prefix):
-    application = "Icq"
-  elif re.search(r'\bchat_facebook\b', prefix):
-    application = "Chat_facebook"
-  elif re.search(r'\bchat_hangout\b', prefix):
-    application = "Chat_Hangout"
-  elif re.search(r'\bchat_gmail\b', prefix):
-    application = "Chat_gmail"
-  elif re.search(r'\bchat_skype\b', prefix):
-    application = "Chat_Skype"
-  elif re.search(r'\bemail\b', prefix):
-    application = "Email"
-  elif re.search(r'\bgmail\b', prefix):
-    application = "Gmail"
-  elif re.search(r'\bftps\b', prefix):
-    application = "FTPS"
-  elif re.search(r'\bsftp\b', prefix):
-    application = "SFTP"
-  elif re.search(r'\bscp\b', prefix):
-    application = "SCP"
-  elif re.search(r'\bftp_skype\b', prefix):
-    application = "FTP_SKype"
-  elif re.search(r'\btorrent\b', prefix):
-    application = "Torrent"
-  elif re.search(r'\byoutube\b', prefix):
-    application = "Yuotube"
-  elif re.search(r'\bnetflix\b', prefix):
-    application = "Netflix"
-  elif re.search(r'\bspotify\b', prefix):
-    application = "Spotify"
-  elif re.search(r'\bvimo\b', prefix):
-    application = "Vimo"    
-  elif re.search(r'\bstreaming_skype\b', prefix):
-    application = "Streamig_Skype"
-  elif re.search(r'\bvoip_skype\b', prefix):
-    application = "Voip_Skype"
-  elif re.search(r'\bvoipbuster\b', prefix):
-    application = "Voipbuster"
-  elif re.search(r'\bvoip_hangout\b', prefix):
-    application = "Voip_Hangout"
-  elif re.search(r'\bvoip_facebook\b', prefix):
-    application = "Voip_facebook"    
-  else:
-    application = None
-
-  return application
-  """
 # Create a dictionary to map prefixes to application names
     prefix_to_application = {
         'icq': 'Icq',
