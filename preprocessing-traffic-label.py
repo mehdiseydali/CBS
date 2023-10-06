@@ -10,7 +10,7 @@ def get_application_from_filename(filename):
   Returns:
     The application of the packet, or None if the application cannot be determined.
   """
-
+"""
   # Get the prefix of the filename.
   prefix = filename.split(".")[0].lower()
 
@@ -62,6 +62,39 @@ def get_application_from_filename(filename):
     application = None
 
   return application
+  """
+# Create a dictionary to map prefixes to application names
+    prefix_to_application = {
+        'icq': 'Icq',
+        'chat_facebook': 'Chat_facebook',
+        'chat_hangout': 'Chat_Hangout',
+        'chat_gmail': 'Chat_gmail',
+        'chat_skype': 'Chat_Skype',
+        'email': 'Email',
+        'gmail': 'Gmail',
+        'ftps': 'FTPS',
+        'sftp': 'SFTP',
+        'scp': 'SCP',
+        'ftp_skype': 'FTP_Skype',
+        'torrent': 'Torrent',
+        'youtube': 'Yuotube',
+        'netflix': 'Netflix',
+        'spotify': 'Spotify',
+        'vimo': 'Vimo',
+        'streaming_skype': 'Streamig_Skype',
+        'voip_skype': 'Voip_Skype',
+        'voipbuster': 'Voipbuster',
+        'voip_hangout': 'Voip_Hangout',
+        'voip_facebook': 'Voip_facebook'
+    }
+
+    # Get the prefix of the filename and convert it to lowercase
+    prefix = filename.split(".")[0].lower()
+
+    # Use the dictionary to determine the application
+    application = prefix_to_application.get(prefix, None)
+
+    return application
 
 def get_label(filename):
   """Gets the label of a packet from the filename.
