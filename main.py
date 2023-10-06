@@ -67,6 +67,7 @@ from network_parameters_initializer import network_parameters_initializer
 from load_pcap_datatype import load_pcap_datatype
 from read_pcap_files import read_pcap_files
 from packet_normalization import packet_normalization
+from define_GAN_mode import process_csv_files
 
 
 
