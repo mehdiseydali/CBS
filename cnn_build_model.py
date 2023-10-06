@@ -25,18 +25,19 @@ def cnn_build_model(parameters):
         if i == 0 :
             model.add(ks.layers.Convolution2D(CNN_LAYER_SPEC[i+1], (KERNEL_SIZE[i],KERNEL_SIZE[i+1] ),padding=PADDING,
                                               strides=(STRIDES[i],STRIDES[i+1]),activation = HIDEN_ACTIVATION_FUNCTION, input_shape=INPUT_SHAPE))
+            model.add(tf.keras.layers.BatchNormalization())
         else:
 
             model.add(ks.layers.Convolution2D(CNN_LAYER_SPEC[i+1],(KERNEL_SIZE[2*i],KERNEL_SIZE[2*i+1] ) ,padding = PADDING,
                                               strides=(STRIDES[2*i],STRIDES[2*i+1]),activation=HIDEN_ACTIVATION_FUNCTION))
-
+            model.add(tf.keras.layers.BatchNormalization())
     model.add(ks.layers.MaxPooling2D(pool_size= (POOL_SIZE[0],POOL_SIZE[1]), strides= (POOL_STRIDE[0],POOL_STRIDE[1])))
     # Flatten => RELU layers
     model.add(ks.layers.Flatten())
     # Dense Connected Layer
     for i in range(DENSE_LAYER[0]):
         model.add(ks.layers.Dense(DENSE_LAYER[i+1], activation=DENSE_LAYER_ACTIVATION_FUNCTION[i]))
-        
+        model.add(tf.keras.layers.BatchNormalization())
    
     
     return model
