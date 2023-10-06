@@ -17,13 +17,16 @@ Here is a breakdown of the code:
 
 """
 from Break_CSV_File import Break_CSV_File
-def packet_normalization(normalized_files_name):
+def packet_normalization(normalized_files_name, type):
     # declare chunk size as BYTE
     chunk_size_file = 50000
 
     # breake file based on pcap size file
     print('Size of file is : ', size, 'Byte')
-    normalized_dir = 'media/mehdi/linux/normalized_data/'
+    if type== 1:
+        normalized_dir = 'media/mehdi/linux/normalized_data/'
+    else:
+        normalized_dir = 'media/mehdi/linux/normalized_app_data/'
     df_normalized = pd.DataFrame(columns=['packet_normalized_data', 'class_label'])
     binary = "{0:08b}".format(int("1a", 16))
     col_list = ["payload","ip_header", "class_label"]
