@@ -13,26 +13,28 @@ def get_application_from_filename(filename):
 # Create a dictionary to map prefixes to application names
     prefix_to_application = {
         'icq': 'Icq',
-        'chat_facebook': 'Chat_facebook',
-        'chat_hangout': 'Chat_Hangout',
-        'chat_gmail': 'Chat_gmail',
-        'chat_skype': 'Chat_Skype',
+		'aim-chat': 'AIM-Chat'
+        'chat_facebook': 'Facebook',
+        'chat_hangout': 'Hangouts',
+        'chat_gmail': 'Gmail',
+        'chat_skype': 'Skype',
         'email': 'Email',
         'gmail': 'Gmail',
         'ftps': 'FTPS',
         'sftp': 'SFTP',
         'scp': 'SCP',
-        'ftp_skype': 'FTP_Skype',
+        'ftp_skype': 'Skype',
         'torrent': 'Torrent',
+		    'tor': 'Tor', 
         'youtube': 'Yuotube',
         'netflix': 'Netflix',
         'spotify': 'Spotify',
-        'vimo': 'Vimo',
-        'streaming_skype': 'Streamig_Skype',
-        'voip_skype': 'Voip_Skype',
+        'vimeo': 'Vimeo',
+        'streaming_skype': 'Skype',
+        'voip_skype': 'Skype',
         'voipbuster': 'Voipbuster',
-        'voip_hangout': 'Voip_Hangout',
-        'voip_facebook': 'Voip_facebook'
+        'voip_hangout': 'Hangouts',
+        'voip_facebook': 'Facebook'
     }
 
     # Get the prefix of the filename and convert it to lowercase
