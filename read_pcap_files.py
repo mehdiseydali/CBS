@@ -66,7 +66,6 @@ def read_pcap_files():
             else:
                 pass
     print(file_name_dict)
-    load_pcap_datatype(file_name_dict)
+    exctracted_root_dir = load_pcap_datatype(file_name_dict)
 
-    print('a')
-    return
+    return exctracted_root_dir
