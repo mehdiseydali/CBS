@@ -13,28 +13,28 @@ def get_application_from_filename(filename):
 # Create a dictionary to map prefixes to application names
     prefix_to_application = {
         'icq': 'Icq',
-		'aim-chat': 'AIM-Chat'
-        'chat_facebook': 'Facebook',
-        'chat_hangout': 'Hangouts',
-        'chat_gmail': 'Gmail',
-        'chat_skype': 'Skype',
-        'email': 'Email',
-        'gmail': 'Gmail',
-        'ftps': 'FTPS',
-        'sftp': 'SFTP',
-        'scp': 'SCP',
-        'ftp_skype': 'Skype',
-        'torrent': 'Torrent',
-		    'tor': 'Tor', 
-        'youtube': 'Yuotube',
-        'netflix': 'Netflix',
-        'spotify': 'Spotify',
-        'vimeo': 'Vimeo',
-        'streaming_skype': 'Skype',
-        'voip_skype': 'Skype',
+	'aim-chat': 'AIM-Chat'
+        'chat_facebook': 'chat_facebook',
+        'chat_hangout': 'chat_hangout',
+        'chat_gmail': 'chat_gmail',
+        'chat_skype': 'chat_skype',
+        'email': 'email',
+        'gmail': 'gmail',
+        'ftps': 'ftps',
+        'sftp': 'sftp',
+        'scp': 'scp',
+        'ftp_skype': 'ftp_skype',
+        'torrent': 'torrent',
+	'tor': 'tor', 
+        'youtube': 'youtube',
+        'netflix': 'netflix',
+        'spotify': 'spotify',
+        'vimeo': 'vimeo',
+        'streaming_skype': 'streaming_skype',
+        'voip_skype': 'voip_skype',
         'voipbuster': 'Voipbuster',
-        'voip_hangout': 'Hangouts',
-        'voip_facebook': 'Facebook'
+        'voip_hangout': 'voipbuster',
+        'voip_facebook': 'voip_facebook'
     }
 
     # Get the prefix of the filename and convert it to lowercase
@@ -123,30 +123,101 @@ def categorize_file_type(filename):
         elif "tor" in filename:
             return 14
     return None
+def read_app_pcap_files():
+    #file_list = [x for x in os.listdir('/home/mehdi') if x.endswith(".pcap")]
+    #print(file_list)
+    root_dir = '/media/mehdi/linux/data/CompletePCAPs'
+    file_name_list_full_path = []
+    file_name_list = []
+    file_name_dict = {}
+    for path in os.listdir(root_dir):
+        full_path = os.path.join(root_dir, path)
+        if os.path.isfile(full_path) and (path.endswith(".pcap") or path.endswith("pcapng")):
+            print(full_path)
+            file_name_list_full_path.append(full_path)
+            file_name_list.append(path)
 
-# Path to the directory containing PCAP files
-pcap_directory = '/path/to/pcap/files'
+    # find category of ISCX VPN-NONVPN DATASET
+    for i in range(len(file_name_list_full_path)):
+	    app_name = get_application_from_filename(file_name_list_full_path[i])
+	if "icq" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 1 #"vpn icq"
+        elif "chat_facebook" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 2 #"chat_facebook"
+        elif "chat_hangout" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 3 #"chat_hangout"
+        elif "chat_gmail" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 4 #"chat_gmail"
+        elif "chat_skype" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 5 #"chat_skype"
+        elif "email" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 6 #"email"
+        elif "gmail" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 4 #"gmail"
+	elif "ftps" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 7 #"ftps"
+	elif "sftp" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 8 #"sftp"
+	elif "scp" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 9 #"scp"
+	elif "ftp_skype" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 5 #"ftp_skype"
+	elif "torrent" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 10 #"torrent"
+	elif "youtube" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 11 #"youtube"
+	elif "netflix" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 12 #"netflix"
+	elif "spotify" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 13 #"spotify"
+	elif "vimeo" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 14 #"vimeo"
+        elif "streaming_skype" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 5 #"streaming_skype"
+        elif "voip_skype" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 5 #"voip_skype"
+        elif "voipbuster" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 15 #"voipbuster"			
+	elif "voip_hangout" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 3 #"voip_hangout"
+	elif "voip_facebook" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 2 #"voip_facebook"		
+	elif "aim-chat" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 16 #"AIM-Chat"
+	elif "tor" in app_name:
+            file_name_dict[file_name_list_full_path[i]] = 17 #"tor"	
+	else:
+                pass 
+            
+        
+    print(file_name_dict)
+    exctracted_root_dir = load_pcap_datatype(file_name_dict)
 
-# Create a CSV file for saving normalized packets
-csv_file = open('normalized_packets.csv', 'w', newline='')
-csv_writer = csv.writer(csv_file)
+    return exctracted_root_dir
+def read_app_pacap_load()
+	# Path to the directory containing PCAP files
+	pcap_directory = '/path/to/pcap/files'
 
-# Iterate through each PCAP file in the directory
-for pcap_file in os.listdir(pcap_directory):
-    if pcap_file.endswith('.pcap'):
-        label = categorize_file_type(pcap_file)
-        application = get_application_from_filename(pcap_path.name)
-        app_label = get_label(pcap_path.name)
-        if label is not None:
-            packets = rdpcap(os.path.join(pcap_directory, pcap_file))
+	# Create a CSV file for saving normalized packets
+	csv_file = open('normalized_packets.csv', 'w', newline='')
+	csv_writer = csv.writer(csv_file)
 
-            for packet in packets:
-                if Raw in packet and packet.haslayer(Ether) and packet[Ether].type == 0x800:
-                    ip_mask(packet)
-                    normalized_packets = split_and_pad(packet)
-                    for normalized_packet in normalized_packets:
-                        normalize_packet(normalized_packet)
-                        csv_writer.writerow([bytes(normalized_packet), label,application+app_label])
+	# Iterate through each PCAP file in the directory
+	or pcap_file in os.listdir(pcap_directory):
+		if pcap_file.endswith('.pcap'):
+			label = categorize_file_type(pcap_file)
+			application = get_application_from_filename(pcap_path.name)
+			app_label = get_label(pcap_path.name)
+			if label is not None:
+				packets = rdpcap(os.path.join(pcap_directory, pcap_file))
 
-# Close the CSV file
-csv_file.close()
+				for packet in packets:
+					if Raw in packet and packet.haslayer(Ether) and packet[Ether].type == 0x800:
+						ip_mask(packet)
+						normalized_packets = split_and_pad(packet)
+						for normalized_packet in normalized_packets:
+							normalize_packet(normalized_packet)
+							csv_writer.writerow([bytes(normalized_packet), label,application+app_label])
+
+	# Close the CSV file
+	csv_file.close()
