@@ -1,5 +1,5 @@
 
-
+from tensorflow.keras.layers import AveragePooling1D
 def defin_1D-CNN_model_params():
     size_list = [4,1,5,1]
     stride_list = [3,1,1,1]
@@ -9,6 +9,8 @@ def defin_1D-CNN_model_params():
     parameters_dict['FILTERS'] = 2
     parameters_dict['STRIDES'] = []
     parameters_dict['PADDING'] = 'same'
+    # Add a key name 'POOL-TYPE' to the parameters_dict dictionary and put its value as AveragePooling1D
+    parameters_dict['POOL-TYPE'] = AveragePooling1D
     parameters_dict['POOL_SIZE'] = (2,1)
     parameters_dict['POOL_STRIDE'] = (2,1)
     parameters_dict['INPUT_SHAPE'] = (1500,1)
