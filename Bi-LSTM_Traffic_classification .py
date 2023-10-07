@@ -1,4 +1,7 @@
 # in this function we build CNN for Traffic Classification
+from memory usage-execution time import measure_execution_memory
+
+@measure_execution_memory
 def Bi-LSTM_Traffic_classification(root_normalized_dir,net_parameters,model_params):
     df_normalized = pd.DataFrame(columns=['packet_normalized_data', 'class_label'])
     df_train = pd.DataFrame(columns=['packet_normalized_data'])
