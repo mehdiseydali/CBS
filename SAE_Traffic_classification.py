@@ -1,4 +1,7 @@
 # in this function we build CNN for Traffic Classification
+from memory usage-execution time import measure_execution_memory
+from SAE_build_model import SAE_build_model
+@measure_execution_memory
 def SAE_Traffic_classification(sae_feature_dir,net_parameters,model_params):
     
     df_normalized = pd.DataFrame(columns=['sae_normalized_features', 'class_label'])
