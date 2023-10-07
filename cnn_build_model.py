@@ -6,6 +6,7 @@ def cnn_build_model(parameters):
     KERNEL_SIZE = val_list[key_list.index("KERNEL_SIZE")]
     STRIDES = val_list[key_list.index("STRIDES")]
     PADDING = val_list[key_list.index("PADDING")]
+    POOL-TYPE = val_list[key_list.index("POOL-TYPE")]
     POOL_SIZE = val_list[key_list.index("POOL_SIZE")]
     POOL_STRIDE = val_list[key_list.index("POOL_STRIDE")]
     HIDEN_ACTIVATION_FUNCTION = val_list[key_list.index("HIDEN_ACTIVATION_FUNCTION")]
