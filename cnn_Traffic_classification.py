@@ -1,9 +1,8 @@
 # in this function we build CNN for Traffic Classification
-import time
+from memory usage-execution time import measure_execution_memory
 from cnn_build_model import cnn_build_model
+@measure_execution_memory
 def cnn_Traffic_classification(root_normalized_dir,net_parameters,model_parameters):
-    # Record the start time
-    start_time = time.time()
     df_normalized = pd.DataFrame(columns=['packet_normalized_data', 'class_label'])
     df_train = pd.DataFrame(columns=['packet_normalized_data'])
     binary = "{0:08b}".format(int("1a", 16))
@@ -128,13 +127,6 @@ def cnn_Traffic_classification(root_normalized_dir,net_parameters,model_paramete
     saved_weights.append('model_weights_cnn.h5')
     # Get the output of the last connected layer
     last_dense_output = model.layers[-DENSE_LAYER[0]].output   
-    # Record the end time
-    end_time = time.time()
-    # Calculate the execution time in seconds
-    execution_time = end_time - start_time
-
-    # Convert execution time to minutes for better readability
-    execution_time_minutes = execution_time / 60
-
+    
     print(f"GAN training completed in {execution_time:.2f} seconds ({execution_time_minutes:.2f} minutes).") 
     return last_dense_output,saved_models,saved_weights,save_model_weights_dir  
