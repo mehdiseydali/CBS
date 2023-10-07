@@ -8,7 +8,7 @@ def get_memory_usage():
     return mem_info.rss  # Resident Set Size (memory usage)
 
 # Function to measure execution time and memory consumption of another function
-def measure_execution(func):
+def measure_execution_memory(func):
     def wrapper(*args, **kwargs):
         # Record start time
         start_time = time.time()
