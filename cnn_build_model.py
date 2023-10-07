@@ -32,7 +32,11 @@ def cnn_build_model(parameters):
             model.add(ks.layers.Convolution2D(CNN_LAYER_SPEC[i+1],(KERNEL_SIZE[2*i],KERNEL_SIZE[2*i+1] ) ,padding = PADDING,
                                               strides=(STRIDES[2*i],STRIDES[2*i+1]),activation=HIDEN_ACTIVATION_FUNCTION))
             model.add(tf.keras.layers.BatchNormalization())
-    model.add(ks.layers.MaxPooling2D(pool_size= (POOL_SIZE[0],POOL_SIZE[1]), strides= (POOL_STRIDE[0],POOL_STRIDE[1])))
+            # Add AveragePooling1D layer based on POOL-TYPE if 'POOL-TYPE' is defined
+            if 'POOL-TYPE' in parameters and parameters['POOL-TYPE'] == AveragePooling1D:
+               model.add(AveragePooling1D(pool_size= (POOL_SIZE[0],POOL_SIZE[1]), strides= (POOL_STRIDE[0],POOL_STRIDE[1])))
+
+    
     # Flatten => RELU layers
     model.add(ks.layers.Flatten())
     # Dense Connected Layer
