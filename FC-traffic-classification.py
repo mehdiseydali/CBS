@@ -1,4 +1,6 @@
-
+from memory usage-execution time import measure_execution_memory
+from fc_build_model import fc_build_model
+@measure_execution_memory
 def FC-traffic-classification(root_normalized_dir,net_params,model_params, 1d-cnn_path,1d-cnn_model,bi-lstm_path,bi-lstm_model,sae_path,sae_model,sae_directory_features):
 
     df_normalized = pd.DataFrame(columns=['packet_normalized_data', 'class_label'])
