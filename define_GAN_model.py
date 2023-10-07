@@ -5,6 +5,7 @@ import tensorflow as tf
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, Reshape, BatchNormalization, LeakyReLU
 from tensorflow.keras.models import Sequential
 
+from memory usage-execution time import measure_execution_memory
 
 # Define the Generator model
 def build_generator(latent_dim):
@@ -70,6 +71,7 @@ def generate_artificial_data(generator, num_samples):
 
 
 # GAN model network program
+@measure_execution_memory
 def process_csv_files()
     directory = './data'  # Directory containing the CSV files
     num_samples = int(input("Enter the number of samples to generate via GAN: "))
